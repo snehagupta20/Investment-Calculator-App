@@ -1,30 +1,40 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 
 
-const UserInput = ({labelName1, labelName2}) => {
-
-    const [userInput1, setUserInput1] = useState(0);
-    const [userInput2, setUserInput2] = useState(0);
-
-    const handleChange1 = (event) => {
-        setUserInput1(event.target.value);
-    }
-    const handleChange2 = (event) => {
-        setUserInput2(event.target.value);
-    }
-
+const UserInput = ({onChange, userInput}) => {
   return (
-    <div className='input-group'>
-        <p>
-            <label>{labelName1}</label>
-            <input type='number' value={userInput1} onChange={handleChange1} required></input>
-        </p>
-        <p>
-            <label>{labelName2}</label>
-            <input type='number' value={userInput2} onChange={handleChange2} required></input>
-        </p>
-    </div>
+    <section id='user-input'>
+        <div className='input-group'>
+            <p>
+                <label>Initial Investment</label>
+                <input 
+                type='number' 
+                required 
+                value={userInput.initialInvestment}
+                onChange={(event) => 
+                onChange('initialInvestment', event.target.value)}/>
+            </p>
+            <p>
+
+                <label>Annual Investment</label>
+                <input type='number' required value={userInput.annualInvestment} onChange={(event) => 
+                onChange('annualInvestment', event.target.value)}></input>
+            </p>
+        </div>
+         <div className='input-group'>
+            <p>
+                <label>Expected Return</label>
+                <input type='number' required value={userInput.expectedReturn} onChange={(event) => 
+                onChange('expectedReturn', event.target.value)}></input>
+            </p>
+            <p>
+                <label>duration</label>
+                <input type='number' required value={userInput.duration} onChange={(event) => 
+                onChange('duration', event.target.value)}></input>
+            </p>
+        </div>
+    </section>
   )
 }
 
